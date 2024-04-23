@@ -135,7 +135,7 @@ CREATE TABLE invoice (
 );
  #####################################################################################
  
-insert into employee (employee_name,birthday,date_of_employment,emp_password) value ("Nathera Alwan",'1985-01-15','2010-05-16',"admin");
+insert into employee (employee_name,birthday,date_of_employment,emp_password) value ("Nathera Alwan",'1985-01-15','2010-05-16',"admin");  /*inserting the vales to the tables*/
 
 
 insert into provide_company values ("AL_Quds",022406550,"Nablus Street - Al Baloua - Al-Bireh - Ramallah / Palestine"),
@@ -176,7 +176,7 @@ insert into categores values (110,"sedatives",3),(120,"heart medications",3),(11
  insert into inshurance values(5956,"Dr.Diaeddin Rimawi","Birzeit Univesity"),(1190985,"Ibrahim Asfour","Birzeit Univesity"),(1190999,"Eyab Ghifari","Bank of Palestine"),(1181192,"Mohamad Alwan","Bank of Palestine"),(1191375,"Islam Jihad","islamic Bank");
     
     
-	  show tables; 
+	  show table; 
       select * from bill;
       select * from cashorder;
       select * from categores;
