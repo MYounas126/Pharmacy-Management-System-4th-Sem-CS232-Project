@@ -4,4 +4,4 @@ This is a simple Pharmacy Management System programmed using PostgresSQL and Pyt
 
 # Team Memebers
 1): Muhammad Younas 2022456  <br>
-2): Ayela Israr 2022130
+2): Ayela Israr Haqqani 2022130
