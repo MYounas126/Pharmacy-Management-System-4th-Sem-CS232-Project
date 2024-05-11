@@ -1,7 +1,10 @@
 import psycopg2
+import firebase_admin
+from firebase_admin import credentials, firestore
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import scrolledtext
+import logging
 
 # Function to connect to the database
 def connect_to_db():
@@ -18,10 +21,17 @@ def connect_to_db():
         messagebox.showerror("Error", f"Error connecting to PostgreSQL database: {error}")
         return None
 
-# Function to perform database operations
-import logging
+try:
+    cred = credentials.Certificate("pharmacy-management-syst-cd1a7-firebase-adminsdk-ez1um-ec41afca2d.json")
+    firebase_admin.initialize_app(cred)
+    db = firestore.client()
+    messagebox.showinfo("Title", "Firebase Initialized")
+except Exception as error:
+    logging.exception("Error occurred while initializing Firebase:")
+    messagebox.showerror("Error", f"Error initializing Firebase: {error}")
+    messagebox.showinfo("Title", "Firebase Initialized")
 
-# Set up logging
+# Function to perform database operations
 logging.basicConfig(filename='database.log', level=logging.DEBUG)
 
 def perform_database_operation(sql_query, values=None):
@@ -49,6 +59,307 @@ def perform_database_operation(sql_query, values=None):
         finally:
             if connection:
                 connection.close()
+
+
+# Firebase Functions
+def add_data(collection, data):
+    try:
+        db.collection(collection).add(data)
+        messagebox.showinfo("Success", "Data added successfully.")
+    except Exception as e:
+        logging.exception("Error occurred while adding data:")
+        messagebox.showerror("Error", f"Error occurred while adding data: {e}")
+    
+def get_data(collection):
+    try:
+        docs = db.collection(collection).stream()
+        for doc in docs:
+            print(f'{doc.id} => {doc.to_dict()}')
+    except Exception as e:
+        logging.exception("Error occurred while fetching data:")
+        messagebox.showerror("Error", f"Error occurred while fetching data: {e}")
+
+# Function to handle button click event for adding a company
+def add_company():
+    company_name = company_name_entry.get()
+    phone = phone_entry.get()
+    address = address_entry.get()
+    sql_query = f"INSERT INTO provide_company (company_name, phone, address) VALUES (%s, %s, %s)"
+    values = (company_name, phone, address)
+    perform_database_operation(sql_query, values)
+
+# Function to handle button click event for displaying companies
+def display_companies():
+    sql_query = "SELECT * FROM provide_company"
+    rows = perform_database_operation(sql_query)
+    if rows:
+        for row in rows:
+            print(row)  # Replace with appropriate display mechanism (e.g., tkinter ListBox, TreeView, etc.)
+    else:
+        messagebox.showinfo("Information", "No companies found.")
+
+# Function to handle button click event for adding a category
+def add_category():
+    # Fetch data from entry widgets
+    cat_id = cat_id_entry.get()
+    category_name = category_name_entry.get()
+    number_of_item = number_of_items_entry.get()
+
+    # Validate and convert input to integers
+    try:
+        cat_id = int(cat_id)
+        number_of_item = int(number_of_item)
+    except ValueError:
+        messagebox.showerror("Error", "Invalid input for category ID or number of item.")
+        return
+
+    # Construct SQL query with proper formatting
+    sql_query = f"INSERT INTO categores (cat_id, categores_name, number_of_item) VALUES (%s, %s, %s)"
+
+    # Tuple of values to be inserted into the query
+    values = (cat_id, category_name, number_of_item)
+
+    # Perform database operation
+    try:
+        perform_database_operation(sql_query, values)
+        messagebox.showinfo("Success", "Data has been added successfully.")
+    except Exception as e:
+        messagebox.showerror("Error", f"Error occurred while adding data: {e}")
+
+def display_categories():
+    # Construct SQL query
+    sql_query = "SELECT * FROM categores"
+
+    # Perform database operation and fetch rows
+    rows = perform_database_operation(sql_query)
+
+    # Display fetched rows
+    if rows:
+        for row in rows:
+            print(row)  # Replace with appropriate display mechanism
+    else:
+        messagebox.showinfo("Information", "No categories found.")
+
+# Function to handle button click event for adding an item
+def add_item():
+    item_name = item_name_entry.get()
+    par_code = par_code_entry.get()
+    quantity = quantity_entry.get()
+    description = description_entry.get()
+    sale_price = sale_price_entry.get()
+    origin_price = origin_price_entry.get()
+    provide_company_name = provide_company_name_entry.get()
+    cat_id = cat_id_entry_item.get()
+    exp_date = exp_date_entry.get()
+    sql_query = f"INSERT INTO item (item_name, par_code, quantity, discription, sale_price, origen_price, provide_company_name, cat_id, exp_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    values = (item_name, par_code, quantity, description, sale_price, origin_price, provide_company_name, cat_id, exp_date)
+    perform_database_operation(sql_query, values)
+
+# Function to handle button click event for displaying items
+def display_items():
+    sql_query = "SELECT * FROM item"
+    rows = perform_database_operation(sql_query)
+    if rows:
+        for row in rows:
+            print(row)  # Replace with appropriate display mechanism
+    else:
+        messagebox.showinfo("Information", "No items found.")
+
+# Function to handle button click event for adding an employee
+def add_employee():
+    employee_name = employee_name_entry.get()
+    birthday = birthday_entry.get()
+    date_of_employment = date_of_employment_entry.get()
+    emp_password = emp_password_entry.get()
+    sql_query = f"INSERT INTO employee (employee_name, birthday, date_of_employment, emp_password) VALUES (%s, %s, %s, %s)"
+    values = (employee_name, birthday, date_of_employment, emp_password)
+    perform_database_operation(sql_query, values)
+
+# Function to handle button click event for displaying employees
+def display_employees():
+    sql_query = "SELECT * FROM employee"
+    rows = perform_database_operation(sql_query)
+    if rows:
+        for row in rows:
+            print(row)  # Replace with appropriate display mechanism
+    else:
+        messagebox.showinfo("Information", "No employees found.")
+
+# Function to handle button click event for adding a hourly employee
+def add_hourly_employee():
+    id = hourly_employee_id_entry.get()
+    work_hours = work_hours_entry.get()
+    hour_price = hour_price_entry.get()
+    sql_query = f"INSERT INTO hourly_employee (id, work_hours, hour_price) VALUES (%s, %s, %s)"
+    values = (id, work_hours, hour_price)
+    perform_database_operation(sql_query, values)
+
+# Function to handle button click event for displaying hourly employees
+def display_hourly_employees():
+    sql_query = "SELECT * FROM hourly_employee"
+    rows = perform_database_operation(sql_query)
+    if rows:
+        for row in rows:
+            print(row)  # Replace with appropriate display mechanism
+    else:
+        messagebox.showinfo("Information", "No hourly employees found.")
+
+# Function to handle button click event for adding a contract employee
+def add_contract_employee():
+    id = contract_employee_id_entry.get()
+    amount_paid = amount_paid_entry.get()
+    sql_query = f"INSERT INTO contract_employee (id, amount_paid) VALUES (%s, %s)"
+    values = (id, amount_paid)
+    perform_database_operation(sql_query, values)
+
+# Function to handle button click event for displaying contract employees
+def display_contract_employees():
+    sql_query = "SELECT * FROM contract_employee"
+    rows = perform_database_operation(sql_query)
+    if rows:
+        for row in rows:
+            print(row)  # Replace with appropriate display mechanism
+    else:
+        messagebox.showinfo("Information", "No contract employees found.")
+
+# Function to handle button click event for adding an order
+def add_order():
+    id = order_id_entry.get()
+    sql_query = f"INSERT INTO orders (id) VALUES (%s)"
+    values = (id,)
+    perform_database_operation(sql_query, values)
+    
+# Function to handle button click event for displaying orders
+def display_orders():
+    sql_query = "SELECT * FROM orders"
+    rows = perform_database_operation(sql_query)
+    if rows:
+        for row in rows:
+            print(row)  # Replace with appropriate display mechanism
+    else:
+        messagebox.showinfo("Information", "No orders found.")
+
+# Function to handle button click event for adding a cash order
+def add_cash_order():
+    order_id = cash_order_id_entry.get()
+    order_date = cash_order_date_entry.get()
+    sql_query = f"INSERT INTO cashOrder (order_id, order_date) VALUES (%s, %s)"
+    values = (order_id, order_date)
+    perform_database_operation(sql_query, values)
+
+# Function to handle button click event for displaying cash orders
+def display_cash_orders():
+    sql_query = "SELECT * FROM cashOrder"
+    rows = perform_database_operation(sql_query)
+    if rows:
+        for row in rows:
+            print(row)  # Replace with appropriate display mechanism
+    else:
+        messagebox.showinfo("Information", "No cash orders found.")
+
+# Function to handle button click event for adding an insurance company
+def add_insurance_company():
+    insurance_company_name = insurance_company_name_entry.get()
+    insurance_company_discount = insurance_company_discount_entry.get()
+    number_of_customers = number_of_customers_entry.get()
+    sql_query = f"INSERT INTO insurance_company (insurance_companyName, insurance_companyDiscount, numberOfCustomer) VALUES (%s, %s, %s)"
+    values = (insurance_company_name, insurance_company_discount, number_of_customers)
+    perform_database_operation(sql_query, values)
+
+# Function to handle button click event for displaying insurance companies
+def display_insurance_companies():
+    sql_query = "SELECT * FROM insurance_company"
+    rows = perform_database_operation(sql_query)
+    if rows:
+        for row in rows:
+            print(row)  # Replace with appropriate display mechanism
+    else:
+        messagebox.showinfo("Information", "No insurance companies found.")
+        
+# Function to handle button click event for adding insurance
+def add_insurance():
+    customer_id = insurance_customer_id_entry.get()
+    customer_name = insurance_customer_name_entry.get()
+    insurance_company_name = insurance_company_name_insurance_entry.get()
+    sql_query = f"INSERT INTO insurance (coustumerID, coustumerName, inshurance_companyName) VALUES (%s, %s, %s)"
+    values = (customer_id, customer_name, insurance_company_name)
+    perform_database_operation(sql_query, values)
+
+# Function to handle button click event for displaying insurance
+def display_insurance():
+
+    sql_query = "SELECT * FROM insurance"
+    rows = perform_database_operation(sql_query)
+    if rows:
+        for row in rows:
+            print(row)  # Replace with appropriate display mechanism
+    else:
+        messagebox.showinfo("Information", "No insurance found.")
+
+# Function to handle button click event for adding an insurance order
+def add_insurance_order():
+    customer_insurance_id = insurance_order_customer_id_entry.get()
+    order_date = insurance_order_date_entry.get()
+    order_id = insurance_order_id_entry.get()
+    sql_query = f"INSERT INTO insuranceOrder (coustumer_inshurance_id, order_date, order_id) VALUES (%s, %s, %s)"
+    values = (customer_insurance_id, order_date, order_id)
+    perform_database_operation(sql_query, values)
+
+# Function to handle button click event for displaying insurance orders
+def display_insurance_orders():
+    sql_query = "SELECT * FROM insuranceOrder"
+    rows = perform_database_operation(sql_query)
+    if rows:
+        for row in rows:
+            print(row)  # Replace with appropriate display mechanism
+    else:
+        messagebox.showinfo("Information", "No insurance orders found.")
+
+# Function to handle button click event for adding a bill
+def add_bill():
+    order_id = bill_order_id_entry.get()
+    order_date = bill_order_date_entry.get()
+    full_price = bill_full_price_entry.get()
+    profits = bill_profits_entry.get()
+    bill_type = bill_type_entry.get()
+    emp_id = bill_emp_id_entry.get()
+    sql_query = f"INSERT INTO bill (order_id, order_date, full_price, profits, bill_type, emp_id) VALUES (%s, %s, %s, %s, %s, %s)"
+    values = (order_id, order_date, full_price, profits, bill_type, emp_id)
+    perform_database_operation(sql_query, values)
+
+# Function to handle button click event for displaying bills
+def display_bills():
+    sql_query = "SELECT * FROM bill"
+    rows = perform_database_operation(sql_query)
+    if rows:
+        for row in rows:
+            print(row)  # Replace with appropriate display mechanism
+    else:
+        messagebox.showinfo("Information", "No bills found.")
+
+# Function to handle button click event for adding an invoice
+def add_invoice():
+    quantity = invoice_quantity_entry.get()
+    full_sale_price = invoice_full_sale_price_entry.get()
+    full_original_price = invoice_full_original_price_entry.get()
+    par_code = invoice_par_code_entry.get()
+    provide_company_name = invoice_provide_company_name_entry.get()
+    cat_id = invoice_cat_id_entry.get()
+    order_id = invoice_order_id_entry.get()
+    sql_query = f"INSERT INTO invoice (quantity, full_sale_price, full_original_price, par_code, provide_company_name, cat_id, order_id) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+    values = (quantity, full_sale_price, full_original_price, par_code, provide_company_name, cat_id, order_id)
+    perform_database_operation(sql_query, values)
+
+# Function to handle button click event for displaying invoices
+def display_invoices():
+    sql_query = "SELECT * FROM invoice"
+    rows = perform_database_operation(sql_query)
+    if rows:
+        for row in rows:
+            print(row)  # Replace with appropriate display mechanism
+    else:
+        messagebox.showinfo("Information", "No invoices found.")
+
 
 def display_companies():
     sql_query = "SELECT * FROM provide_company"
