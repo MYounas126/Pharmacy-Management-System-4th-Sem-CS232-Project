@@ -374,9 +374,11 @@ address_entry.grid(row=2, column=1)
 
 add_company_button = tk.Button(provide_company_frame, text="Add Company", command=add_company)
 add_company_button.grid(row=3, columnspan=2)
+add_company_button.config(bg='lightgreen')
 
 display_companies_button = tk.Button(provide_company_frame, text="Display Companies", command=display_companies)
 display_companies_button.grid(row=4, columnspan=2)
+display_companies_button.config(bg='lightgreen')
 
 # Categories Section
 categories_frame = tk.LabelFrame(root, text="Categories", bg="lightblue")
@@ -399,9 +401,11 @@ number_of_items_entry.grid(row=2, column=1)
 
 add_category_button = tk.Button(categories_frame, text="Add Category", command=add_category)
 add_category_button.grid(row=3, columnspan=2)
+add_category_button.config(bg='lightgreen')
 
 display_categories_button = tk.Button(categories_frame, text="Display Categories", command=display_categories)
 display_categories_button.grid(row=4, columnspan=2)
+display_categories_button.config(bg='lightgreen')
 
 # Item Section
 item_frame = tk.LabelFrame(root, text="Item", bg="lightblue")
@@ -454,9 +458,11 @@ exp_date_entry.grid(row=8, column=1)
 
 add_item_button = tk.Button(item_frame, text="Add Item", command=add_item)
 add_item_button.grid(row=9, columnspan=2)
+add_item_button.config(bg='lightgreen')
 
 display_items_button = tk.Button(item_frame, text="Display Items", command=display_items)
 display_items_button.grid(row=10, columnspan=2)
+display_items_button.config(bg='lightgreen')
 
 # Employee Section
 employee_frame = tk.LabelFrame(root, text="Employee", bg="lightblue")
@@ -484,9 +490,11 @@ emp_password_entry.grid(row=3, column=1)
 
 add_employee_button = tk.Button(employee_frame, text="Add Employee", command=add_employee)
 add_employee_button.grid(row=4, columnspan=2)
+add_employee_button.config(bg='lightgreen')
 
 display_employees_button = tk.Button(employee_frame, text="Display Employees", command=display_employees)
 display_employees_button.grid(row=5, columnspan=2)
+display_employees_button.config(bg='lightgreen')
 
 # Hourly Employee Section
 hourly_employee_frame = tk.LabelFrame(root, text="Hourly Employee", bg="lightblue")
@@ -509,9 +517,11 @@ hour_price_entry.grid(row=2, column=1)
 
 add_hourly_employee_button = tk.Button(hourly_employee_frame, text="Add Hourly Employee", command=add_hourly_employee)
 add_hourly_employee_button.grid(row=3, columnspan=2)
+add_hourly_employee_button.config(bg='lightgreen')
 
 display_hourly_employees_button = tk.Button(hourly_employee_frame, text="Display Hourly Employees", command=display_hourly_employees)
 display_hourly_employees_button.grid(row=4, columnspan=2)
+display_hourly_employees_button.config(bg='lightgreen')
 
 # Contract Employee Section
 contract_employee_frame = tk.LabelFrame(root, text="Contract Employee", bg="lightblue")
@@ -529,9 +539,11 @@ amount_paid_entry.grid(row=1, column=1)
 
 add_contract_employee_button = tk.Button(contract_employee_frame, text="Add Contract Employee", command=add_contract_employee)
 add_contract_employee_button.grid(row=2, columnspan=2)
+add_contract_employee_button.config(bg='lightgreen')
 
 display_contract_employees_button = tk.Button(contract_employee_frame, text="Display Contract Employees", command=display_contract_employees)
 display_contract_employees_button.grid(row=3, columnspan=2)
+display_contract_employees_button.config(bg='lightgreen')
 
 # Order Section
 order_frame = tk.LabelFrame(root, text="Order", bg="lightblue")
@@ -544,9 +556,11 @@ order_id_entry.grid(row=0, column=1)
 
 add_order_button = tk.Button(order_frame, text="Add Order", command=add_order)
 add_order_button.grid(row=1, columnspan=2)
+add_order_button.config(bg='lightgreen')
 
 display_orders_button = tk.Button(order_frame, text="Display Orders", command=display_orders)
 display_orders_button.grid(row=2, columnspan=2)
+display_orders_button.config(bg='lightgreen')
 
 # Cash Order Section
 cash_order_frame = tk.LabelFrame(root, text="Cash Order", bg="lightblue")
@@ -564,9 +578,11 @@ cash_order_date_entry.grid(row=1, column=1)
 
 add_cash_order_button = tk.Button(cash_order_frame, text="Add Cash Order", command=add_cash_order)
 add_cash_order_button.grid(row=2, columnspan=2)
+add_cash_order_button.config(bg='lightgreen')
 
 display_cash_orders_button = tk.Button(cash_order_frame, text="Display Cash Orders", command=display_cash_orders)
 display_cash_orders_button.grid(row=3, columnspan=2)
+display_cash_orders_button.config(bg='lightgreen')
 
 # Insurance Company Section
 insurance_company_frame = tk.LabelFrame(root, text="Insurance Company", bg="lightblue")
@@ -589,9 +605,11 @@ number_of_customers_entry.grid(row=2, column=1)
 
 add_insurance_company_button = tk.Button(insurance_company_frame, text="Add Insurance Company", command=add_insurance_company)
 add_insurance_company_button.grid(row=3, columnspan=2)
+add_insurance_company_button.config(bg='lightgreen')
 
 display_insurance_companies_button = tk.Button(insurance_company_frame, text="Display Insurance Companies", command=display_insurance_companies)
 display_insurance_companies_button.grid(row=4, columnspan=2)
+display_insurance_companies_button.config(bg='lightgreen')
 
 # Insurance Section
 insurance_frame = tk.LabelFrame(root, text="Insurance", bg="lightblue")
@@ -614,9 +632,11 @@ insurance_company_name_insurance_entry.grid(row=2, column=1)
 
 add_insurance_button = tk.Button(insurance_frame, text="Add Insurance", command=add_insurance)
 add_insurance_button.grid(row=3, columnspan=2)
+add_insurance_button.config(bg='lightgreen')
 
 display_insurance_button = tk.Button(insurance_frame, text="Display Insurance", command=display_insurance)
 display_insurance_button.grid(row=4, columnspan=2)
+display_insurance_button.config(bg='lightgreen')
 
 # Insurance Order Section
 insurance_order_frame = tk.LabelFrame(root, text="Insurance Order", bg="lightblue")
@@ -639,9 +659,11 @@ insurance_order_id_entry.grid(row=2, column=1)
 
 add_insurance_order_button = tk.Button(insurance_order_frame, text="Add Insurance Order", command=add_insurance_order)
 add_insurance_order_button.grid(row=3, columnspan=2)
+add_insurance_order_button.config(bg='lightgreen')
 
 display_insurance_orders_button = tk.Button(insurance_order_frame, text="Display Insurance Orders", command=display_insurance_orders)
 display_insurance_orders_button.grid(row=4, columnspan=2)
+display_insurance_orders_button.config(bg='lightgreen')
 
 # Bill Section
 bill_frame = tk.LabelFrame(root, text="Bill", bg="lightblue")
@@ -679,9 +701,11 @@ bill_emp_id_entry.grid(row=5, column=1)
 
 add_bill_button = tk.Button(bill_frame, text="Add Bill", command=add_bill)
 add_bill_button.grid(row=6, columnspan=2)
+add_bill_button.config(bg='lightgreen')
 
 display_bills_button = tk.Button(bill_frame, text="Display Bills", command=display_bills)
 display_bills_button.grid(row=7, columnspan=2)
+display_bills_button.config(bg='lightgreen')
 
 # Invoice Section
 invoice_frame = tk.LabelFrame(root, text="Invoice", bg="lightblue")
@@ -724,8 +748,10 @@ invoice_order_id_entry.grid(row=6, column=1)
 
 add_invoice_button = tk.Button(invoice_frame, text="Add Invoice", command=add_invoice)
 add_invoice_button.grid(row=7, columnspan=2)
+add_invoice_button.config(bg='lightgreen')
 
 display_invoices_button = tk.Button(invoice_frame, text="Display Invoices", command=display_invoices)
 display_invoices_button.grid(row=8, columnspan=2)
+display_invoices_button.config(bg='lightgreen')
 
 root.mainloop()
