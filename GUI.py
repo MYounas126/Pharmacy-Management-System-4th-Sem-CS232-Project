@@ -354,7 +354,7 @@ root = tk.Tk()
 root.title("Pharmacy Management System")
 
 # Provide Company Section
-provide_company_frame = tk.LabelFrame(root, text="Provide Company")
+provide_company_frame = tk.LabelFrame(root, text="Provide Company", bg="lightblue")
 provide_company_frame.grid(row=0, column=0, padx=10, pady=10)
 
 company_name_label = tk.Label(provide_company_frame, text="Company Name:")
@@ -379,7 +379,7 @@ display_companies_button = tk.Button(provide_company_frame, text="Display Compan
 display_companies_button.grid(row=4, columnspan=2)
 
 # Categories Section
-categories_frame = tk.LabelFrame(root, text="Categories")
+categories_frame = tk.LabelFrame(root, text="Categories", bg="lightblue")
 categories_frame.grid(row=0, column=1, padx=10, pady=10)
 
 cat_id_label = tk.Label(categories_frame, text="Category ID:")
@@ -404,7 +404,7 @@ display_categories_button = tk.Button(categories_frame, text="Display Categories
 display_categories_button.grid(row=4, columnspan=2)
 
 # Item Section
-item_frame = tk.LabelFrame(root, text="Item")
+item_frame = tk.LabelFrame(root, text="Item", bg="lightblue")
 item_frame.grid(row=0, column=2, padx=10, pady=10)
 
 item_name_label = tk.Label(item_frame, text="Item Name:")
@@ -459,7 +459,7 @@ display_items_button = tk.Button(item_frame, text="Display Items", command=displ
 display_items_button.grid(row=10, columnspan=2)
 
 # Employee Section
-employee_frame = tk.LabelFrame(root, text="Employee")
+employee_frame = tk.LabelFrame(root, text="Employee", bg="lightblue")
 employee_frame.grid(row=1, column=0, padx=10, pady=10)
 
 employee_name_label = tk.Label(employee_frame, text="Employee Name:")
@@ -489,7 +489,7 @@ display_employees_button = tk.Button(employee_frame, text="Display Employees", c
 display_employees_button.grid(row=5, columnspan=2)
 
 # Hourly Employee Section
-hourly_employee_frame = tk.LabelFrame(root, text="Hourly Employee")
+hourly_employee_frame = tk.LabelFrame(root, text="Hourly Employee", bg="lightblue")
 hourly_employee_frame.grid(row=1, column=1, padx=10, pady=10)
 
 hourly_employee_id_label = tk.Label(hourly_employee_frame, text="Employee ID:")
@@ -514,7 +514,7 @@ display_hourly_employees_button = tk.Button(hourly_employee_frame, text="Display
 display_hourly_employees_button.grid(row=4, columnspan=2)
 
 # Contract Employee Section
-contract_employee_frame = tk.LabelFrame(root, text="Contract Employee")
+contract_employee_frame = tk.LabelFrame(root, text="Contract Employee", bg="lightblue")
 contract_employee_frame.grid(row=1, column=2, padx=10, pady=10)
 
 contract_employee_id_label = tk.Label(contract_employee_frame, text="Employee ID:")
@@ -534,7 +534,7 @@ display_contract_employees_button = tk.Button(contract_employee_frame, text="Dis
 display_contract_employees_button.grid(row=3, columnspan=2)
 
 # Order Section
-order_frame = tk.LabelFrame(root, text="Order")
+order_frame = tk.LabelFrame(root, text="Order", bg="lightblue")
 order_frame.grid(row=2, column=0, padx=10, pady=10)
 
 order_id_label = tk.Label(order_frame, text="Employee ID:")
@@ -549,7 +549,7 @@ display_orders_button = tk.Button(order_frame, text="Display Orders", command=di
 display_orders_button.grid(row=2, columnspan=2)
 
 # Cash Order Section
-cash_order_frame = tk.LabelFrame(root, text="Cash Order")
+cash_order_frame = tk.LabelFrame(root, text="Cash Order", bg="lightblue")
 cash_order_frame.grid(row=2, column=1, padx=10, pady=10)
 
 cash_order_id_label = tk.Label(cash_order_frame, text="Order ID:")
@@ -569,7 +569,7 @@ display_cash_orders_button = tk.Button(cash_order_frame, text="Display Cash Orde
 display_cash_orders_button.grid(row=3, columnspan=2)
 
 # Insurance Company Section
-insurance_company_frame = tk.LabelFrame(root, text="Insurance Company")
+insurance_company_frame = tk.LabelFrame(root, text="Insurance Company", bg="lightblue")
 insurance_company_frame.grid(row=2, column=2, padx=10, pady=10)
 
 insurance_company_name_label = tk.Label(insurance_company_frame, text="Company Name:")
@@ -594,7 +594,7 @@ display_insurance_companies_button = tk.Button(insurance_company_frame, text="Di
 display_insurance_companies_button.grid(row=4, columnspan=2)
 
 # Insurance Section
-insurance_frame = tk.LabelFrame(root, text="Insurance")
+insurance_frame = tk.LabelFrame(root, text="Insurance", bg="lightblue")
 insurance_frame.grid(row=1, column=4, padx=10, pady=10)
 
 insurance_customer_id_label = tk.Label(insurance_frame, text="Customer ID:")
@@ -619,7 +619,7 @@ display_insurance_button = tk.Button(insurance_frame, text="Display Insurance", 
 display_insurance_button.grid(row=4, columnspan=2)
 
 # Insurance Order Section
-insurance_order_frame = tk.LabelFrame(root, text="Insurance Order")
+insurance_order_frame = tk.LabelFrame(root, text="Insurance Order", bg="lightblue")
 insurance_order_frame.grid(row=2, column=4, padx=10, pady=10)
 
 insurance_order_customer_id_label = tk.Label(insurance_order_frame, text="Customer Insurance ID:")
@@ -644,7 +644,7 @@ display_insurance_orders_button = tk.Button(insurance_order_frame, text="Display
 display_insurance_orders_button.grid(row=4, columnspan=2)
 
 # Bill Section
-bill_frame = tk.LabelFrame(root, text="Bill")
+bill_frame = tk.LabelFrame(root, text="Bill", bg="lightblue")
 bill_frame.grid(row=0, column=4, padx=10, pady=10)
 
 bill_order_id_label = tk.Label(bill_frame, text="Order ID:")
@@ -684,7 +684,7 @@ display_bills_button = tk.Button(bill_frame, text="Display Bills", command=displ
 display_bills_button.grid(row=7, columnspan=2)
 
 # Invoice Section
-invoice_frame = tk.LabelFrame(root, text="Invoice")
+invoice_frame = tk.LabelFrame(root, text="Invoice", bg="lightblue")
 invoice_frame.grid(row=0, column=5, padx=10, pady=10)
 
 invoice_quantity_label = tk.Label(invoice_frame, text="Quantity:")
